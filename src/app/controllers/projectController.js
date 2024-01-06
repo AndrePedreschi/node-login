@@ -99,7 +99,6 @@ router.put("/:projectId", async (req, res) => {
 
 router.delete("/:projectId", async (req, res) => {
   try {
-    
     //const project = await Project.findById(req.params.projectId)
     //project.tasks = []
     //await Task.deleteMany({ project: project._id })
