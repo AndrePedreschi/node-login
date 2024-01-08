@@ -59,8 +59,7 @@ $ npm run dev
 
 
 ### License
-<img src="https://img.shields.io/badge/license-MIT" />
-
+<img src="https://img.shields.io/badge/license-MIT-blue"
 
 
 ### Autor
