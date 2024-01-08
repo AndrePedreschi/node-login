@@ -1,0 +1,426 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API de Login com MongoDB",
+    "description": "Essa API tem como objetivo de estudo a realização de um sistema de login com recuperação de senha e implementação de um Crud de 'projetos' com as suas 'tasks'",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "email": "a.pedreschi32@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "API de testes"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "summary": "Cadastro de usuário",
+        "description": "Essa rota será responsável por cadastrar um novo usuário",
+        "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              },
+              "examples": {
+                "register": {
+                  "value": {
+                    "name": "André",
+                    "email": "a.pedreschi32@gmail.com",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Registration failed"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/RegisterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "post": {
+        "summary": "Criação de projeto",
+        "description": "Essa rota será responsável por criar um novo projeto",
+        "tags": ["Projects"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Project"
+              },
+              "examples": {
+                "projects": {
+                  "value": {
+                    "title": "Novo projeto",
+                    "description": "Descrição do projeto",
+                    "tasks": [
+                      {
+                        "title": "Nova tarefa 1",
+                        "assignedTo": "65936237fd2ee0d6485e7b09"
+                      },
+                      {
+                        "title": "Nova tarefa 2",
+                        "assignedTo": "65936237fd2ee0d6485e7b09"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Error creating a new project"
+          },
+          "401": {
+            "description": "Unauthorized action, token invalid"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Busca todos os projetos",
+        "description": "Rota responsável por listar dados os projetos",
+        "tags": ["Projects"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": {},
+        "responses": {
+          "400": {
+            "description": "Error loading projects"
+          },
+          "401": {
+            "description": "Unauthorized action, token invalid"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{projectId}":{
+      "get": {
+        "summary": "Busca um projeto pelo id",
+        "description": "Rota responsável por buscar um projeto pelo id",
+        "tags": ["Projects"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Id do projeto",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error loading projects"
+          },
+          "401": {
+            "description": "Unauthorized action, token invalid"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Alterar um projeto",
+        "description": "Rota responsável por alterar os dados de um projetos",
+        "tags": ["Projects"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Id do projeto",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Project"
+              },
+              "examples": {
+                "projects": {
+                  "value": {
+                    "title": "Novo projeto",
+                    "description": "Descrição do projeto",
+                    "tasks": [
+                      {
+                        "title": "Nova tarefa 1",
+                        "assignedTo": "65936237fd2ee0d6485e7b09"
+                      },
+                      {
+                        "title": "Nova tarefa 2",
+                        "assignedTo": "65936237fd2ee0d6485e7b09"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Error updating a project"
+          },
+          "401": {
+            "description": "Unauthorized action, token invalid"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar um projeto",
+        "description": "Rota responsável por deletar um projeto",
+        "tags": ["Projects"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "Id do projeto",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error deleting the project"
+          },
+          "401": {
+            "description": "Unauthorized action, token invalid"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/DeleteProjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects?userId={userId}":{
+      "get": {
+        "summary": "Busca os projetos de um usuário",
+        "description": "Rota responsável por buscar os projetos de um usuário id dele",
+        "tags": ["Projects"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "Id do usuário",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error loading projects"
+          },
+          "401": {
+            "description": "Unauthorized action, token invalid"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Register": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "RegisterResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "__v": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "assignedTo": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "__v": {
+            "type": "number"
+          }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tasks": {
+            "type": "array"
+          }
+        }
+      },
+      "ProjectResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "__v": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "tasks": {
+            "type": "array"
+          }
+        }
+      },
+      "DeleteProjectResponse": {
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

@@ -1,10 +1,8 @@
 const mongoose = require("mongoose")
-
+require("dotenv").config()
 //mongoose.connect("mongodb://localhost:27017/noderest")
 mongoose
-  .connect(
-    "mongodb+srv://dbsimple:CpnqglAxnudMIqmL@cluster0-robalo.kmh0vmb.mongodb.net/noderest?retryWrites=true&w=majority"
-  )
+  .connect(process.env.URI_DB)
   .then(() => {
     console.log("MongoDB conectado")
   })

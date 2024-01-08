@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
     const user = await User.create(req.body)
     user.password = undefined
     return res.send({
-      user,
+      ...user._doc,
       token: generateToken({ id: user.id }),
     })
   } catch (err) {

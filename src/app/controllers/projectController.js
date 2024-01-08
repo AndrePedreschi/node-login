@@ -6,7 +6,7 @@ const Task = require("../models/task")
 const router = express.Router()
 
 router.use(authMiddleware)
-
+//criar rota para listar os projetos do usuário
 router.get("/", async (req, res) => {
   try {
     const projects = await Project.find().populate(["user", "tasks"])
@@ -23,6 +23,22 @@ router.get("/:projectId", async (req, res) => {
     // const project = await Project.findById(req.params.projectId)
     //retorna os dados do projeto + os dados do usuário atrelado a ele
     const project = await Project.findById(req.params.projectId).populate([
+      "user",
+      "tasks",
+    ])
+
+    return res.status(200).send({ project })
+  } catch (err) {
+    return res.status(400).send({ error: "Error loading the project" })
+  }
+})
+
+router.get("/", async (req, res) => {
+  try {
+    //retorna somente os dados do projeto
+    // const project = await Project.findById(req.params.projectId)
+    //retorna os dados do projeto + os dados do usuário atrelado a ele
+    const project = await Project.find({ user: req.query.userId }).populate([
       "user",
       "tasks",
     ])
