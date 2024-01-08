@@ -59,18 +59,14 @@ $ npm run dev
 
 
 ### License
-(https://img.shields.io/badge/license-MIT)
+<img src="https://img.shields.io/badge/license-MIT" />
 
 
 
 ### Autor
 ---
-
-
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/89170202?v=4" width="100px;" alt=""/>
- <br />
- <sub><b>André Pedreschi</b></sub>
-
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/89170202?v=4" width="100px;" alt=""/>
+<sub><b>André Pedreschi</b></sub>
 
 Made with ❤️ by André Pedreschi 👋🏽 Get in touch!
 
