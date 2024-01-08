@@ -64,7 +64,7 @@ $ npm run dev
 
 ### Autor
 ---
-<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/89170202?v=4" width="100px;" alt=""/>
+<img style="border-radius: 50%;" src="https://media.licdn.com/dms/image/C4D03AQH_xMFKZ-fBTQ/profile-displayphoto-shrink_400_400/0/1635371730081?e=1710374400&v=beta&t=4Axa_73n4kxnDvS8liMvg564s7ygPhWxluMK0ZdBt4A" width="100px;" alt=""/>
 <sub><b>André Pedreschi</b></sub>
 
 Made with ❤️ by André Pedreschi 👋🏽 Get in touch!
