@@ -64,7 +64,9 @@ $ npm run dev
 
 ### Autor
 ---
-<img style="border-radius: 50%;" src="https://media.licdn.com/dms/image/C4D03AQH_xMFKZ-fBTQ/profile-displayphoto-shrink_400_400/0/1635371730081?e=1710374400&v=beta&t=4Axa_73n4kxnDvS8liMvg564s7ygPhWxluMK0ZdBt4A" width="100px;" alt=""/>
+<div style="border-radius: 50%;">
+    <img src="https://media.licdn.com/dms/image/C4D03AQH_xMFKZ-fBTQ/profile-displayphoto-shrink_400_400/0/1635371730081?e=1710374400&v=beta&t=4Axa_73n4kxnDvS8liMvg564s7ygPhWxluMK0ZdBt4A" width="100px;" alt=""/>
+</div>
 <sub><b>André Pedreschi</b></sub>
 
 Made with ❤️ by André Pedreschi 👋🏽 Get in touch!
