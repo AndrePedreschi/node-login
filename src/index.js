@@ -16,6 +16,15 @@ app.use(express.urlencoded({ extended: true }))
 require('./app/controllers/index')(app)
 
 
-app.listen(3000, () => {
-  console.log("Conectado a porta 3000");
-})
+app.listen(
+  {
+    host: "0.0.0.0",
+    port: process.env.PORT ? Number(process.env.PORT) : 3000,
+  },
+  () => {
+    console.log("HTTP SERVER RUNNING!")
+  }
+)
+  /* .then(() => {
+    console.log("HTTP SERVER RUNNING!")
+  }) */
