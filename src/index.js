@@ -3,9 +3,10 @@ const express = require('express')
 const swaggerUi = require('swagger-ui-express')
 //import swaggerDocs from '../src/config/swagger.json'
 const swaggerDocs = require('../src/config/swagger.json')
-  
+const cors = require("cors")  
   
 const app = express()
+app.use(cors())
 
 app.use(express.json())
 
